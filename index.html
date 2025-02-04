@@ -49,8 +49,8 @@
         // Converted from my Python version
 
         function loveTester() {
-            let foo = document.getElementById('firstName').value;
-            let bar = document.getElementById('secondName').value;
+            let foo = document.getElementById('firstName').value.trim();
+            let bar = document.getElementById('secondName').value.trim();
 
             if (!foo || !bar) {
                 alert("Please enter both names.");
