@@ -5,35 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Love Tester</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        input {
-            padding: 10px;
-            margin: 10px;
-            font-size: 16px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .result {
-            margin-top: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
-
     <h1>Love Tester</h1>
 
     <div>
@@ -46,8 +21,7 @@
     <div id="result" class="result"></div>
 
     <script>
-        // Converted from my Python version
-
+        // Converted from Python
         function loveTester() {
             let foo = document.getElementById('firstName').value.trim();
             let bar = document.getElementById('secondName').value.trim();
@@ -80,8 +54,22 @@
             let result = charCount.join('');
             document.getElementById('result').innerHTML = `${foo.charAt(0).toUpperCase() + foo.slice(1)} & ${bar.charAt(0).toUpperCase() + bar.slice(1)} => ${result}%`;
         }
-    </script>
 
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                let foo = document.getElementById('firstName').value.trim();
+                let bar = document.getElementById('secondName').value.trim();
+                if (foo && bar) {
+                    loveTester();
+                } else {
+                    alert("Please enter both names.");
+                }
+            }
+        }
+
+        document.getElementById('firstName').addEventListener('keydown', handleEnter);
+        document.getElementById('secondName').addEventListener('keydown', handleEnter);
+    </script>
 </body>
 
 </html>
