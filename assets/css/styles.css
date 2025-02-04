@@ -1,1 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+body {
+    font-family: "Dancing Script", serif;
+    margin: 0 auto;
+}
+
+.banner {
+    width: 100vw;
+}
+
+.banner img {
+    width: 100vw;
+    height: 10svh;
+    object-fit: cover;
+}
+
+.container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 80svh;
+    background: url("../images/wallpaper.jpg") no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+input, button {
+    padding: 0.5em;
+    font-size: 2em;
+}
+
+h1 {
+    font-size: 4em;
+}

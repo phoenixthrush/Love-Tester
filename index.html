@@ -9,67 +9,72 @@
 </head>
 
 <body>
-    <h1>Love Tester</h1>
-
-    <div>
-        <input type="text" id="firstName" placeholder="First Name" />
-        <input type="text" id="secondName" placeholder="Second Name" />
-        <br>
-        <button onclick="loveTester()">Calculate Love</button>
+    <div class="banner">
+        <img src="assets/images/banner.webp" alt="Banner">
     </div>
+    <div class="container">
+        <h1>Love Tester</h1>
 
-    <div id="result" class="result"></div>
+        <div>
+            <input type="text" id="firstName" placeholder="First Name" />
+            <input type="text" id="secondName" placeholder="Second Name" />
+            <br>
+            <button onclick="loveTester()">Calculate Love</button>
+        </div>
 
-    <script>
-        // Converted from Python
-        function loveTester() {
-            let foo = document.getElementById('firstName').value.trim();
-            let bar = document.getElementById('secondName').value.trim();
+        <div id="result" class="result"></div>
 
-            if (!foo || !bar) {
-                alert("Please enter both names.");
-                return;
-            }
-
-            let conc = (foo + bar).toLowerCase().split('').sort();
-            let charCount = Array.from(conc.reduce((map, char) => {
-                map.set(char, (map.get(char) || 0) + 1);
-                return map;
-            }, new Map()).values());
-
-            while (charCount.length > 2 || parseInt(charCount.join('')) > 100) {
-                let newList = [];
-
-                while (charCount.length > 1) {
-                    newList.push(charCount.shift() + charCount.pop());
-                }
-
-                if (charCount.length) {
-                    newList.push(charCount.shift());
-                }
-
-                charCount = Array.from(newList.join('').split('')).map(Number);
-            }
-
-            let result = charCount.join('');
-            document.getElementById('result').innerHTML = `${foo.charAt(0).toUpperCase() + foo.slice(1)} & ${bar.charAt(0).toUpperCase() + bar.slice(1)} => ${result}%`;
-        }
-
-        function handleEnter(event) {
-            if (event.key === 'Enter') {
+        <script>
+            // Converted from Python
+            function loveTester() {
                 let foo = document.getElementById('firstName').value.trim();
                 let bar = document.getElementById('secondName').value.trim();
-                if (foo && bar) {
-                    loveTester();
-                } else {
+
+                if (!foo || !bar) {
                     alert("Please enter both names.");
+                    return;
+                }
+
+                let conc = (foo + bar).toLowerCase().split('').sort();
+                let charCount = Array.from(conc.reduce((map, char) => {
+                    map.set(char, (map.get(char) || 0) + 1);
+                    return map;
+                }, new Map()).values());
+
+                while (charCount.length > 2 || parseInt(charCount.join('')) > 100) {
+                    let newList = [];
+
+                    while (charCount.length > 1) {
+                        newList.push(charCount.shift() + charCount.pop());
+                    }
+
+                    if (charCount.length) {
+                        newList.push(charCount.shift());
+                    }
+
+                    charCount = Array.from(newList.join('').split('')).map(Number);
+                }
+
+                let result = charCount.join('');
+                document.getElementById('result').innerHTML = `${foo.charAt(0).toUpperCase() + foo.slice(1)} & ${bar.charAt(0).toUpperCase() + bar.slice(1)} => ${result}%`;
+            }
+
+            function handleEnter(event) {
+                if (event.key === 'Enter') {
+                    let foo = document.getElementById('firstName').value.trim();
+                    let bar = document.getElementById('secondName').value.trim();
+                    if (foo && bar) {
+                        loveTester();
+                    } else {
+                        alert("Please enter both names.");
+                    }
                 }
             }
-        }
 
-        document.getElementById('firstName').addEventListener('keydown', handleEnter);
-        document.getElementById('secondName').addEventListener('keydown', handleEnter);
-    </script>
+            document.getElementById('firstName').addEventListener('keydown', handleEnter);
+            document.getElementById('secondName').addEventListener('keydown', handleEnter);
+        </script>
+    </div>
 </body>
 
 </html>
