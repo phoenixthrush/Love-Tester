@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Tester</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Love Tester</h1>
+
+    <div>
+        <input type="text" id="firstName" placeholder="First Name" />
+        <input type="text" id="secondName" placeholder="Second Name" />
+        <br>
+        <button onclick="loveTester()">Calculate Love</button>
+    </div>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        // Converted from my Python version
+
+        function loveTester() {
+            let foo = document.getElementById('firstName').value;
+            let bar = document.getElementById('secondName').value;
+
+            if (!foo || !bar) {
+                alert("Please enter both names.");
+                return;
+            }
+
+            let conc = (foo + bar).toLowerCase().split('').sort();
+            let charCount = Array.from(conc.reduce((map, char) => {
+                map.set(char, (map.get(char) || 0) + 1);
+                return map;
+            }, new Map()).values());
+
+            while (charCount.length > 2 || parseInt(charCount.join('')) > 100) {
+                let newList = [];
+
+                while (charCount.length > 1) {
+                    newList.push(charCount.shift() + charCount.pop());
+                }
+
+                if (charCount.length) {
+                    newList.push(charCount.shift());
+                }
+
+                charCount = Array.from(newList.join('').split('')).map(Number);
+            }
+
+            let result = charCount.join('');
+            document.getElementById('result').innerHTML = `${foo.charAt(0).toUpperCase() + foo.slice(1)} & ${bar.charAt(0).toUpperCase() + bar.slice(1)} => ${result}%`;
+        }
+    </script>
+
+</body>
+
+</html>
